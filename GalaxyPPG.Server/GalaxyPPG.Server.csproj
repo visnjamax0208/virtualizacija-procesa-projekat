@@ -75,6 +75,12 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GalaxyPPG.Common\GalaxyPPG.Common.csproj">
+      <Project>{4cd0a38e-1b08-4f9c-8fd8-1a68b05ebcae}</Project>
+      <Name>GalaxyPPG.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
