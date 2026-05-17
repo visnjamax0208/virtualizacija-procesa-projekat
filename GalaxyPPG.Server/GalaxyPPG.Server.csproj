@@ -68,6 +68,9 @@
     <Compile Include="Services\GalaxyPpgService.svc.cs">
       <DependentUpon>GalaxyPpgService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Storage\FileMeasurementPacketStorage.cs" />
+    <Compile Include="Storage\IMeasurementPacketStorage.cs" />
+    <Compile Include="Storage\StoragePathProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

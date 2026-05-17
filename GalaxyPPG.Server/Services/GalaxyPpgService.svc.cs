@@ -3,6 +3,7 @@ using System.ServiceModel;
 using GalaxyPPG.Common.Contracts;
 using GalaxyPPG.Common.Exceptions;
 using GalaxyPPG.Common.Models;
+using GalaxyPPG.Server.Storage;
 
 namespace GalaxyPPG.Server.Services
 {
@@ -17,10 +18,20 @@ namespace GalaxyPPG.Server.Services
         {
             ValidatePacket(packet);
 
+            string savedFilePath;
+            using (FileMeasurementPacketStorage storage = new FileMeasurementPacketStorage(StoragePathProvider.GetStorageRoot()))
+            {
+                savedFilePath = storage.Save(packet);
+            }
+
             return new ProcessingResult(
                 true,
                 packet.Records.Count,
-                string.Format("Accepted {0} records for participant {1}.", packet.Records.Count, packet.Participant.ParticipantCode));
+                string.Format(
+                    "Accepted {0} records for participant {1}. Saved to {2}.",
+                    packet.Records.Count,
+                    packet.Participant.ParticipantCode,
+                    savedFilePath));
         }
 
         private static void ValidatePacket(MeasurementPacket packet)
