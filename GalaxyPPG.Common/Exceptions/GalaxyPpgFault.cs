@@ -5,6 +5,10 @@ namespace GalaxyPPG.Common.Exceptions
     [DataContract]
     public class GalaxyPpgFault
     {
+        public GalaxyPpgFault()
+        {
+        }
+
         public GalaxyPpgFault(string code, string message)
         {
             Code = code;

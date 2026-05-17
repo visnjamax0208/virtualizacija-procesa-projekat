@@ -5,6 +5,10 @@ namespace GalaxyPPG.Common.Models
     [DataContract]
     public class SensorRecord
     {
+        public SensorRecord()
+        {
+        }
+
         public SensorRecord(SensorType sensorType, long timestampUnixMs, double value, string unit, string sourceFile)
         {
             SensorType = sensorType;

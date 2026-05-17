@@ -5,6 +5,10 @@ namespace GalaxyPPG.Common.Models
     [DataContract]
     public class ParticipantInfo
     {
+        public ParticipantInfo()
+        {
+        }
+
         public ParticipantInfo(string participantCode, string deviceName, string sessionName)
         {
             ParticipantCode = participantCode;

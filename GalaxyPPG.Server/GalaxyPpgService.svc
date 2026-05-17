@@ -1,0 +1,1 @@
+<%@ ServiceHost Language="C#" Debug="true" Service="GalaxyPPG.Server.Services.GalaxyPpgService" CodeBehind="Services\GalaxyPpgService.svc.cs" %>

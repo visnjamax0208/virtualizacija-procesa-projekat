@@ -5,6 +5,10 @@ namespace GalaxyPPG.Common.Models
     [DataContract]
     public class ProcessingResult
     {
+        public ProcessingResult()
+        {
+        }
+
         public ProcessingResult(bool success, int acceptedRecords, string message)
         {
             Success = success;
