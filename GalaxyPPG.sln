@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaxyPPG.Server", "GalaxyP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaxyPPG.Common", "GalaxyPPG.Common\GalaxyPPG.Common.csproj", "{4CD0A38E-1B08-4F9C-8FD8-1A68B05EBCAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaxyPPG.Client", "GalaxyPPG.Client\GalaxyPPG.Client.csproj", "{FFCD6A56-F63C-4F52-B5F9-7AD6B626A2F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4CD0A38E-1B08-4F9C-8FD8-1A68B05EBCAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CD0A38E-1B08-4F9C-8FD8-1A68B05EBCAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CD0A38E-1B08-4F9C-8FD8-1A68B05EBCAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFCD6A56-F63C-4F52-B5F9-7AD6B626A2F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFCD6A56-F63C-4F52-B5F9-7AD6B626A2F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFCD6A56-F63C-4F52-B5F9-7AD6B626A2F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFCD6A56-F63C-4F52-B5F9-7AD6B626A2F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
