@@ -65,6 +65,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alarms\AlarmEventArgs.cs" />
+    <Compile Include="Alarms\AlarmFileLogger.cs" />
+    <Compile Include="Alarms\AlarmThresholds.cs" />
+    <Compile Include="Alarms\MeasurementAlarmDetector.cs" />
     <Compile Include="Services\GalaxyPpgService.svc.cs">
       <DependentUpon>GalaxyPpgService.svc</DependentUpon>
     </Compile>

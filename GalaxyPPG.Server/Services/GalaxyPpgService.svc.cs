@@ -3,6 +3,7 @@ using System.ServiceModel;
 using GalaxyPPG.Common.Contracts;
 using GalaxyPPG.Common.Exceptions;
 using GalaxyPPG.Common.Models;
+using GalaxyPPG.Server.Alarms;
 using GalaxyPPG.Server.Storage;
 
 namespace GalaxyPPG.Server.Services
@@ -18,20 +19,27 @@ namespace GalaxyPPG.Server.Services
         {
             ValidatePacket(packet);
 
+            string storageRoot = StoragePathProvider.GetStorageRoot();
             string savedFilePath;
-            using (FileMeasurementPacketStorage storage = new FileMeasurementPacketStorage(StoragePathProvider.GetStorageRoot()))
+            using (FileMeasurementPacketStorage storage = new FileMeasurementPacketStorage(storageRoot))
             {
                 savedFilePath = storage.Save(packet);
             }
+
+            MeasurementAlarmDetector alarmDetector = new MeasurementAlarmDetector(AlarmThresholds.FromConfiguration());
+            AlarmFileLogger alarmLogger = new AlarmFileLogger(storageRoot);
+            alarmDetector.AlarmDetected += alarmLogger.HandleAlarm;
+            int alarmCount = alarmDetector.Analyze(packet);
 
             return new ProcessingResult(
                 true,
                 packet.Records.Count,
                 string.Format(
-                    "Accepted {0} records for participant {1}. Saved to {2}.",
+                    "Accepted {0} records for participant {1}. Saved to {2}. Detected alarms: {3}.",
                     packet.Records.Count,
                     packet.Participant.ParticipantCode,
-                    savedFilePath));
+                    savedFilePath,
+                    alarmCount));
         }
 
         private static void ValidatePacket(MeasurementPacket packet)
