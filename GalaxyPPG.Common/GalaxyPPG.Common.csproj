@@ -42,6 +42,7 @@
     <Compile Include="Models\MeasurementPacket.cs" />
     <Compile Include="Models\ParticipantInfo.cs" />
     <Compile Include="Models\ProcessingResult.cs" />
+    <Compile Include="Models\RawCsvUpload.cs" />
     <Compile Include="Models\SensorRecord.cs" />
     <Compile Include="Models\SensorType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,5 +13,9 @@ namespace GalaxyPPG.Common.Contracts
         [OperationContract]
         [FaultContract(typeof(GalaxyPpgFault))]
         ProcessingResult SubmitPacket(MeasurementPacket packet);
+
+        [OperationContract]
+        [FaultContract(typeof(GalaxyPpgFault))]
+        ProcessingResult UploadRawCsv(RawCsvUpload upload);
     }
 }

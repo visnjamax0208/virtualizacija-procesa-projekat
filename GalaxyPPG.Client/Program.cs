@@ -35,6 +35,12 @@ namespace GalaxyPPG.Client
                     Console.WriteLine("Submit success: " + result.Success);
                     Console.WriteLine("Accepted records: " + result.AcceptedRecords);
                     Console.WriteLine("Message: " + result.Message);
+
+                    RawCsvUpload upload = CreateRawCsvUpload(packet.Participant);
+                    ProcessingResult uploadResult = client.UploadRawCsv(upload);
+                    Console.WriteLine("Raw upload success: " + uploadResult.Success);
+                    Console.WriteLine("Uploaded bytes: " + uploadResult.AcceptedRecords);
+                    Console.WriteLine("Raw upload message: " + uploadResult.Message);
                 }
             }
             catch (EndpointNotFoundException)
@@ -81,6 +87,14 @@ namespace GalaxyPPG.Client
             }
 
             return packet;
+        }
+
+        private static RawCsvUpload CreateRawCsvUpload(ParticipantInfo participant)
+        {
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SampleData", "P01", "GalaxyWatch", "BVP.csv");
+            byte[] content = File.ReadAllBytes(filePath);
+
+            return new RawCsvUpload(participant, Path.GetFileName(filePath), content);
         }
     }
 }

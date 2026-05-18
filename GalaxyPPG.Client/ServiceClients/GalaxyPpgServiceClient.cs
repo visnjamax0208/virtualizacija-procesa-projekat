@@ -37,6 +37,12 @@ namespace GalaxyPPG.Client.ServiceClients
             return channel.SubmitPacket(packet);
         }
 
+        public ProcessingResult UploadRawCsv(RawCsvUpload upload)
+        {
+            ThrowIfDisposed();
+            return channel.UploadRawCsv(upload);
+        }
+
         public void Dispose()
         {
             Dispose(true);

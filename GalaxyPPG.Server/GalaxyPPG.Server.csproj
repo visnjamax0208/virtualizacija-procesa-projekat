@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="Storage\FileMeasurementPacketStorage.cs" />
     <Compile Include="Storage\IMeasurementPacketStorage.cs" />
+    <Compile Include="Storage\RawCsvUploadStorage.cs" />
     <Compile Include="Storage\StoragePathProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
