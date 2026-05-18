@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.ServiceModel;
 using GalaxyPPG.Common.Models;
+using GalaxyPPG.Client.ServiceClients;
 
 namespace GalaxyPPG.Client
 {
@@ -9,8 +11,10 @@ namespace GalaxyPPG.Client
     {
         private static void Main()
         {
+            string serviceUrl = ConfigurationManager.AppSettings["GalaxyPpgServiceUrl"];
+
             Console.WriteLine("GalaxyPPG client");
-            Console.WriteLine("Service URL: " + ConfigurationManager.AppSettings["GalaxyPpgServiceUrl"]);
+            Console.WriteLine("Service URL: " + serviceUrl);
 
             MeasurementPacket packet = CreateDemoPacket();
 
@@ -18,7 +22,31 @@ namespace GalaxyPPG.Client
             Console.WriteLine("Participant: " + packet.Participant.ParticipantCode);
             Console.WriteLine("Device: " + packet.Participant.DeviceName);
             Console.WriteLine("Records: " + packet.Records.Count);
-            Console.WriteLine("WCF sending will be added in the next step.");
+
+            try
+            {
+                using (GalaxyPpgServiceClient client = new GalaxyPpgServiceClient(serviceUrl))
+                {
+                    Console.WriteLine("Server response: " + client.Ping());
+
+                    ProcessingResult result = client.SubmitPacket(packet);
+                    Console.WriteLine("Submit success: " + result.Success);
+                    Console.WriteLine("Accepted records: " + result.AcceptedRecords);
+                    Console.WriteLine("Message: " + result.Message);
+                }
+            }
+            catch (EndpointNotFoundException)
+            {
+                Console.WriteLine("Server is not available. Start GalaxyPPG.Server and try again.");
+            }
+            catch (FaultException exception)
+            {
+                Console.WriteLine("Server rejected the packet: " + exception.Message);
+            }
+            catch (CommunicationException exception)
+            {
+                Console.WriteLine("Communication error: " + exception.Message);
+            }
         }
 
         private static MeasurementPacket CreateDemoPacket()
