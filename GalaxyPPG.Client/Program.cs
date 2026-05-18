@@ -55,6 +55,10 @@ namespace GalaxyPPG.Client
             {
                 Console.WriteLine("Communication error: " + exception.Message);
             }
+
+            Console.WriteLine();
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
 
         private static MeasurementPacket CreateDemoPacket()
