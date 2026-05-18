@@ -41,12 +41,24 @@
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Csv\CsvSensorFileParser.cs" />
+    <Compile Include="Csv\MeasurementPacketLoader.cs" />
+    <Compile Include="Csv\TimestampNormalizer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ServiceClients\GalaxyPpgServiceClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="SampleData\P01\GalaxyWatch\ACC.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SampleData\P01\GalaxyWatch\BVP.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SampleData\P01\GalaxyWatch\HR.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GalaxyPPG.Common\GalaxyPPG.Common.csproj">

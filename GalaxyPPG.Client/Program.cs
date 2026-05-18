@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.ServiceModel;
 using GalaxyPPG.Common.Models;
+using GalaxyPPG.Client.Csv;
 using GalaxyPPG.Client.ServiceClients;
 
 namespace GalaxyPPG.Client
@@ -16,7 +18,7 @@ namespace GalaxyPPG.Client
             Console.WriteLine("GalaxyPPG client");
             Console.WriteLine("Service URL: " + serviceUrl);
 
-            MeasurementPacket packet = CreateDemoPacket();
+            MeasurementPacket packet = CreatePacket();
 
             Console.WriteLine("Prepared demo packet:");
             Console.WriteLine("Participant: " + packet.Participant.ParticipantCode);
@@ -59,6 +61,26 @@ namespace GalaxyPPG.Client
                     new SensorRecord(SensorType.HeartRate, 1716000001000, 74.0, "bpm", "HR.csv"),
                     new SensorRecord(SensorType.Accelerometer, 1716000002000, 0.18, "g", "ACC.csv")
                 });
+        }
+
+        private static MeasurementPacket CreatePacket()
+        {
+            string sampleDataDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SampleData", "P01", "GalaxyWatch");
+            if (!Directory.Exists(sampleDataDirectory))
+            {
+                return CreateDemoPacket();
+            }
+
+            ParticipantInfo participant = new ParticipantInfo("P01", "GalaxyWatch", "SampleData");
+            MeasurementPacketLoader loader = new MeasurementPacketLoader();
+            MeasurementPacket packet = loader.LoadFromDirectory(sampleDataDirectory, participant);
+
+            if (packet.Records == null || packet.Records.Count == 0)
+            {
+                return CreateDemoPacket();
+            }
+
+            return packet;
         }
     }
 }
