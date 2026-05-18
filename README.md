@@ -53,7 +53,7 @@ Primeri pokrivaju:
 4. Proveriti adresu servisa:
 
    ```text
-   http://localhost:51487/GalaxyPpgService.svc
+   http://localhost:51500/GalaxyPpgService.svc
    ```
 
 5. Pokrenuti `GalaxyPPG.Client`.
